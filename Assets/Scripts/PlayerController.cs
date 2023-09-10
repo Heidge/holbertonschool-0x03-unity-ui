@@ -45,6 +45,11 @@ public class PlayerController : MonoBehaviour
 		{
 			rb.AddForce(-speed * Time.deltaTime, 0, 0);
 		}
+
+		if (Input.GetKey("escape"))
+        {
+            SceneManager.LoadScene(0);
+        }
 	}
 
 	void Update()
