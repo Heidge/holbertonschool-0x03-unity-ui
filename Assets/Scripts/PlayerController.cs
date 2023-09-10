@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -8,9 +9,9 @@ public class PlayerController : MonoBehaviour
 
 	public Rigidbody rb;
 	public float speed = 1000f;
-	private int score = 0;
+	private int score;
 	public int health = 5;
-	private bool _isCollided = false;
+	public Text scoreText;
 
 	// Use this for initialization
 	void Start()
@@ -21,7 +22,6 @@ public class PlayerController : MonoBehaviour
 	// Increase the number of calls to FixedUpdate.
 	void FixedUpdate()
 	{
-
 
 		if (Input.GetKey("z"))
 		{
@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
 			Debug.Log("Game Over!");
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
+		
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -58,8 +59,10 @@ public class PlayerController : MonoBehaviour
 		if (other.CompareTag("Pickup"))
 		{
 			score++;
+			SetScoreText();
 			Debug.Log("Score: " + score);
 			other.gameObject.SetActive(false);
+
 		}
 		else if (other.CompareTag("Trap"))
 		{
@@ -70,5 +73,12 @@ public class PlayerController : MonoBehaviour
 		{
 			Debug.Log("You win!");
 		}
+		
 	}
+
+	void SetScoreText()
+	{
+		scoreText.text = "Score: " + score;
+		Debug.Log(score);
+	}	
 }
