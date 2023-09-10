@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
 		{
 			score++;
 			SetScoreText();
-			Debug.Log("Score: " + score);
 			other.gameObject.SetActive(false);
 
 		}
@@ -69,7 +68,6 @@ public class PlayerController : MonoBehaviour
 		{
 			health--;
 			SetHealthText();
-			Debug.Log("Heatlh: " + health);
 		}
 		else if (other.CompareTag("Goal"))
 		{
