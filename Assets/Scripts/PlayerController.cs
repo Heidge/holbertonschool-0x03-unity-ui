@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 	public int health = 5;
 	public Text scoreText;
 	public Text healthText;
+	public Text winLoseText;
+	public Image winLoseImage;
 
 	// Use this for initialization
 	void Start()
@@ -49,8 +51,11 @@ public class PlayerController : MonoBehaviour
 	{
 		if (health == 0)
 		{
-			Debug.Log("Game Over!");
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			winLoseImage.gameObject.SetActive(true);
+			winLoseImage.color = Color.red;
+			winLoseText.color = Color.white;
+			winLoseText.text = "Game Over!";
+			StartCoroutine(LoadScene(3));
 		}
 		
 	}
@@ -71,7 +76,10 @@ public class PlayerController : MonoBehaviour
 		}
 		else if (other.CompareTag("Goal"))
 		{
-			Debug.Log("You win!");
+			winLoseImage.gameObject.SetActive(true);
+			winLoseImage.color = Color.green;
+			winLoseText.color = Color.black;
+			winLoseText.text = "You Win!";
 		}
 		
 	}
@@ -84,5 +92,11 @@ public class PlayerController : MonoBehaviour
 	void SetHealthText()
 	{
 		healthText.text = "Health: " + health;
+	}
+
+	IEnumerator LoadScene(float seconds)
+	{
+		yield return new WaitForSeconds(seconds);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 }
