@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 	private int score;
 	public int health = 5;
 	public Text scoreText;
+	public Text healthText;
 
 	// Use this for initialization
 	void Start()
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour
 		else if (other.CompareTag("Trap"))
 		{
 			health--;
+			SetHealthText();
 			Debug.Log("Heatlh: " + health);
 		}
 		else if (other.CompareTag("Goal"))
@@ -79,6 +81,10 @@ public class PlayerController : MonoBehaviour
 	void SetScoreText()
 	{
 		scoreText.text = "Score: " + score;
-		Debug.Log(score);
-	}	
+	}
+
+	void SetHealthText()
+	{
+		healthText.text = "Health: " + health;
+	}
 }
