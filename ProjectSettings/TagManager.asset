@@ -10,6 +10,7 @@ TagManager:
   - Teleporter
   - Teleporter 1
   - Teleporter 2
+  - Colorblind Mode
   layers:
   - Default
   - TransparentFX
